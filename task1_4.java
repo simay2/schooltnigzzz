@@ -2,7 +2,7 @@ package lesson1;
 
 import java.util.Scanner;
 
-public class task4_2 {
+public class task1_4 {
 
 	public static int gradationI(int base, int degree) {
 		int outcome=1;
