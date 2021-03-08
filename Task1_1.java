@@ -1,6 +1,6 @@
 package lesson1;
 
-public class Task1_2 {
+public class Task1_1 {
 	public static void main(String[] args) {
 	  	 System.out.println("Sum is " + xMethod(9));
 	  	 System.out.println("Sum is " +yMethod(5));
