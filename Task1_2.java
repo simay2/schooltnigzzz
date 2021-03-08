@@ -1,6 +1,6 @@
 package lesson1;
 
-public class Task2_2 {
+public class Task1_2 {
 	public static void main(String[] args) {
 		xMethod(1234567);
 		System.out.println();
