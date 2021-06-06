@@ -3,20 +3,13 @@ package homework;
 import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.PriorityQueue;
-
-import javax.swing.Timer;
 import java.awt.*;
-import javax.swing.*;
-import java.awt.event.*;
 
 import javax.swing.JPanel;
 
 class SortingPanel extends JPanel {
 
-	private ArrayList<Integer> numbers = new ArrayList(Arrays.asList(5, 4, 3, 2, 1));
+	private ArrayList<Integer> numbers = new ArrayList<Integer>(Arrays.asList(1, 2, 3, 4, 5));
 
 	private static int noSortingStage = -1;
 	private static int incrementIStage = 0; // not visible on animation
@@ -26,6 +19,8 @@ class SortingPanel extends JPanel {
 	private static int isSortedStage = 4;
 
 	private int stage = noSortingStage;
+	
+	boolean elementsWereSwapped = false;
 
 	int currentI = -1;
 	int currentJ = -1;
@@ -45,6 +40,7 @@ class SortingPanel extends JPanel {
 
 		if (stage == incrementIStage) {
 			currentI++;
+			elementsWereSwapped = false;
 			stage = incrementJStage; // Initializing stage, continue directly to next stage
 		}
 
@@ -54,6 +50,7 @@ class SortingPanel extends JPanel {
 			Integer numberJ = numbers.get(currentJ);
 			Integer numberJPlus1 = numbers.get(currentJ + 1);
 			if (numberJ > numberJPlus1) {
+				elementsWereSwapped = true;
 				numbers.set(currentJ + 1, numberJ);
 				numbers.set(currentJ, numberJPlus1);
 			}
@@ -71,12 +68,13 @@ class SortingPanel extends JPanel {
 		} else if (stage == switchStage) {
 			// allows j++ only when j will not get greater than  numbers.size() - 2- currentI (the last valid option) 
 			if (currentJ < numbers.size() - 2 - currentI) { 
+				
 				stage = incrementJStage;
 			} else {
 				currentJ = -1; // finished comparing all pair for this iteration of i
 				System.out.println(currentI);
 				// allows i++ only when i will not get greater than  numbers.size() - 2 (the last valid option) 
-				if (currentI < numbers.size() - 2) {
+				if (currentI < numbers.size() - 2 && elementsWereSwapped) {
 					stage = incrementIStage; // next i
 
 				} else {
